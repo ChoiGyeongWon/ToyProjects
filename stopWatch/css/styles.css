@@ -42,3 +42,32 @@
     top: 41%;
     transform: translateY(-50%);
 }
+
+.buttonWrap {
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttonWrap > div {
+    font-size: 20px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: all .4s;
+}
+
+.buttonWrap > div:hover {
+    transform: scale(1.1);
+}
+
+.btnStart:hover {
+    color: #7DCE13;
+}
+
+.btnStop:hover {
+    color: #FFE9AE;
+}
+
+.btnReset:hover {
+    color: #F65A83;
+}
