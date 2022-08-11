@@ -18,10 +18,7 @@ document.addEventListener("DOMContentLoaded", function(){
     let runningSeconds = 0;
     let runningMinutes = 0;
     let runningHours = 0;
-    let intervalMiliSeconds;
-    let intervalSeconds;
-    let intervalMinutes;
-    let intervalHours;
+    let interval;
 
     BtnStart.addEventListener("click", startBtnClick);
     BtnStop.addEventListener("click", stopBtnClick);
@@ -29,12 +26,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     function startBtnClick() {
         
-        intervalMiliSeconds = setInterval(startMiliSeconds,10);
-        intervalSeconds = setInterval(startSeconds,1000);
-        intervalMinutes = setInterval(startMinutes,60000);
-        intervalHours = setInterval(startHours,3600000);
-
-
+        interval = setInterval(startTimer,10);
 
         if(!this.classList.contains('active')) {
 
@@ -54,13 +46,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     function stopBtnClick() {
         
-        console.log('중지')
-        clearInterval(intervalMiliSeconds);
-        clearInterval(intervalSeconds);
-        clearInterval(intervalMinutes);
-        clearInterval(intervalHours);
-
-
+        clearInterval(interval);
 
         if(!this.classList.contains('active')) {
 
@@ -79,10 +65,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     function resetBtnClick() {
 
-        clearInterval(intervalMiliSeconds);
-        clearInterval(intervalSeconds);
-        clearInterval(intervalMinutes);
-        clearInterval(intervalHours);
+        clearInterval(interval);
         
         runningMiliSeconds = 0;
         runningSeconds = 0;
@@ -102,59 +85,68 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
 
-    function startMiliSeconds() {
+    function startTimer() {
 
         runningMiliSeconds += 1;
 
         if(runningMiliSeconds < 10) {
+
             Miliseconds.textContent = '0' + runningMiliSeconds;
+
         }else if(runningMiliSeconds < 100) {
+
             Miliseconds.textContent = runningMiliSeconds;
-        }else {
+
+        }else if(runningMiliSeconds >= 100){
+
             runningMiliSeconds = 0;
             Miliseconds.textContent = '0' + runningMiliSeconds;
+
+            runningSeconds++;
+
         }
-
-    }
-
-    function startSeconds() {
-
-        runningSeconds += 1;
 
         if(runningSeconds < 10) {
+
             Seconds.textContent = '0' + runningSeconds;
+
         }else if(runningSeconds < 60) {
+
             Seconds.textContent = runningSeconds;
-        }else {
+
+        }else if(runningSeconds >= 60) {
+
             runningSeconds = 0;
             Seconds.textContent = '0' + runningSeconds;
+
+            runningMinutes++;
+
         }
-
-    }
-
-    function startMinutes() {
-
-        runningMinutes += 1;
 
         if(runningMinutes < 10) {
+
             Minutes.textContent = '0' + runningMinutes;
+
         }else if(runningMinutes < 60) {
+
             Minutes.textContent = runningMinutes;
-        }else {
+
+        }else if(runningMinutes >= 60) {
+
             runningMinutes = 0;
             Minutes.textContent = '0' + runningMinutes;
+
+            runningHours++;
         }
 
-    }
-
-    function startHours() {
-
-        runningHours += 1;
-
         if(runningHours < 10) {
+
             Hours.textContent = '0' + runningHours;
-        }else if(runningHours < 10) {
+
+        }else if(runningHours >= 10) {
+
             Hours.textContent = runningHours;
+
         }
 
     }

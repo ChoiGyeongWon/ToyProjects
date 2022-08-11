@@ -46,14 +46,19 @@
 .buttonWrap {
     display: flex;
     justify-content: space-between;
+    width: 280px;
+    box-sizing: border-box;
 }
 
 .buttonWrap > div {
+    width: 33.3333%;
     font-size: 20px;
     padding: 12px 20px;
+    text-align: center;
     box-sizing: border-box;
     cursor: pointer;
     transition: all .4s;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .buttonWrap > div:hover {
