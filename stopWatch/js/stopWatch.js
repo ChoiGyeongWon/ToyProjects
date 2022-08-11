@@ -18,23 +18,86 @@ document.addEventListener("DOMContentLoaded", function(){
     let runningSeconds = 0;
     let runningMinutes = 0;
     let runningHours = 0;
+    let intervalMiliSeconds;
+    let intervalSeconds;
+    let intervalMinutes;
+    let intervalHours;
 
-    ButtonWrap.addEventListener("click", btnClick);
+    BtnStart.addEventListener("click", startBtnClick);
+    BtnStop.addEventListener("click", stopBtnClick);
+    BtnReset.addEventListener("click", resetBtnClick);
 
-    function btnClick(e) {
+    function startBtnClick() {
         
-        let Target = e.target;
-        
-        if(Target.classList.contains('btnStart')) { //시작
-            setInterval(startMiliSeconds,10);
-            setInterval(startSeconds,1000);
-            setInterval(startMinutes,60000);
-            setInterval(startHours,3600000);
-        }else if(Target.classList.contains('btnStop')) { //중지
-            console.log('중지')
-        }else if(Target.classList.contains('btnReset')) { //리셋
-            console.log('다시시작')
+        intervalMiliSeconds = setInterval(startMiliSeconds,10);
+        intervalSeconds = setInterval(startSeconds,1000);
+        intervalMinutes = setInterval(startMinutes,60000);
+        intervalHours = setInterval(startHours,3600000);
+
+
+
+        if(!this.classList.contains('active')) {
+
+            this.classList.add('active');
+            this.textContent = 'Start';
+
+            BtnStop.classList.remove('active');
+            BtnReset.classList.remove('active');
+
+        }else {
+
+            this.classList.remove('active');
+            
         }
+
+    }
+
+    function stopBtnClick() {
+        
+        console.log('중지')
+        clearInterval(intervalMiliSeconds);
+        clearInterval(intervalSeconds);
+        clearInterval(intervalMinutes);
+        clearInterval(intervalHours);
+
+
+
+        if(!this.classList.contains('active')) {
+
+            this.classList.add('active');
+
+            BtnStart.textContent = 'ReStart';
+            BtnStart.classList.remove('active');
+
+        }else {
+
+            this.classList.remove('active');
+
+        }
+
+    }
+
+    function resetBtnClick() {
+
+        clearInterval(intervalMiliSeconds);
+        clearInterval(intervalSeconds);
+        clearInterval(intervalMinutes);
+        clearInterval(intervalHours);
+        
+        runningMiliSeconds = 0;
+        runningSeconds = 0;
+        runningMinutes = 0;
+        runningHours = 0;
+
+        Miliseconds.textContent = '0' + runningMiliSeconds;
+        Seconds.textContent = '0' + runningSeconds;
+        Minutes.textContent = '0' + runningMinutes;
+        Hours.textContent = '0' + runningHours;
+
+        BtnStart.textContent = 'Start';
+        BtnStart.classList.remove('active');
+        BtnStop.classList.add('active');
+        this.classList.add('active');    
 
     }
 

@@ -71,3 +71,7 @@
 .btnReset:hover {
     color: #F65A83;
 }
+
+.buttonWrap .active {
+    pointer-events: none;
+}
