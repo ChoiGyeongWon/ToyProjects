@@ -150,13 +150,5 @@ document.addEventListener("DOMContentLoaded", function(){
         }
 
     }
-    
-    function stopTimer() {
-
-    }
-
-    function resetTimer() {
-
-    }
 
 })
